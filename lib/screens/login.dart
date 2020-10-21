@@ -6,13 +6,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueGrey[800],
-        body: SingleChildScrollView(
-          child: Center(
-              child: SizedBox(
+      backgroundColor: Colors.blueGrey[800],
+      body: SingleChildScrollView(
+        child: Center(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -31,29 +33,45 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(
                   height: 40,
+                  
                 ),
                 SizedBox(
-                  width: 335,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Digite seu nome',
-                      filled: true,
-                      fillColor: Colors.white,
-                      suffixIcon: Icon(Icons.account_box),
+                  width: 300,
+                  
+                  child: Form(
+                    key: _formKey, 
+                    
+                    child: TextFormField(
+                      validator: (valor) {
+                        if (valor.isEmpty) {
+                          return 'O campo está vazio!';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'Informe um nome',
+                        filled: true,
+                        fillColor: Colors.white,
+                        suffixIcon: Icon(Icons.account_box),
+                        errorStyle: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 12,
                 ),
                 RaisedButton(
                   onPressed: () {
-                    print('Somente teste');
+                    if (_formKey.currentState.validate()) {
+                      print('ok');
+                    } else {
+                      print('Nao ok');
+                    }
                   },
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 30,
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -69,7 +87,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       SizedBox(
-                        width: 15,
+                        width: 12,
                       ),
                       Icon(
                         Icons.done,
@@ -77,13 +95,12 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
-          )
-
-              // color: Colors.red,
-              ),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }
