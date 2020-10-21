@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
                   color: Colors.white,
                 ),
                 Text(
-                  'Chat',
+                  'Jobs Chat',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 42,
