@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -11,7 +14,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[800],
+      backgroundColor: Colors.yellow[800],
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(
@@ -20,27 +23,35 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(
-                  Icons.chat,
-                  size: 80,
-                  color: Colors.white,
+                  Icons.forum,
+                  //Icons.ac_unit,
+                  //Icons.filter_vintage,
+                  size: 90,
+                  color: Colors.cyan[900],
                 ),
                 Text(
-                  'Chat',
+                  'UberCat',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 42,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(0.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      
+                    ],
+                    color: Colors.cyan[900],
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(
                   height: 40,
-                  
                 ),
                 SizedBox(
-                  width: 300,
-                  
+                  width: 350,
                   child: Form(
-                    key: _formKey, 
-                    
+                    key: _formKey,
                     child: TextFormField(
                       validator: (valor) {
                         if (valor.isEmpty) {
@@ -49,9 +60,9 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Informe um nome',
+                        hintText: 'Informe seu nome',
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Colors.white70,
                         suffixIcon: Icon(Icons.account_box),
                         errorStyle: TextStyle(
                           fontSize: 18,
@@ -61,7 +72,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 18,
                 ),
                 RaisedButton(
                   onPressed: () {
@@ -75,7 +86,8 @@ class _LoginState extends State<Login> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  color: Colors.blueGrey[900],
+                  elevation: 10.0,
+                  color: Colors.cyan[900],
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
