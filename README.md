@@ -8,7 +8,7 @@ Aplicativo de bate papo online em Flutter.
 
 <h2 align="center"> Tela de Login - Web & Android </h2>
 <h1 align="center">
-  <img alt="AppChat"title="#AppChat" src="lib/img/web.PNG"/>
+  <img alt="AppChat"title="#AppChat" src="lib/img/AppChat.png"/>
 
   <h2 align="center"> Telas do AppChat Android </h2>
   <img alt="AppChat"title="#AppChat" src="lib/img/telas_android.png"/>
