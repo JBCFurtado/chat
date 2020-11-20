@@ -9,6 +9,10 @@ part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
+  bool _conectado = false;
+
+  bool get conectado => _conectado;
+
 
   final IO.Socket _socket = IO.io('https://karlaycosta.com.br', <String, dynamic>{
     'transports': ['websocket'],
@@ -20,9 +24,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     _socket.on('connect', (_){
       print('Conectado...');
+      add(EventoConectado());
     });
     _socket.on('disconnect', (_){
       print('Desconectado...');
+      add(EventoDesconectado());
     });
   }
 
@@ -30,6 +36,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   Stream<ChatState> mapEventToState(
     ChatEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    // Toda: implementão aqui do mapEventToState.
+    if (event is EventoConectado){
+      _conectado = true;
+      yield EstadoConectado();
+    } else if (event is EventoDesconectado){
+      _conectado = false;
+      yield EstadoDesconectado();
+    }
   }
 }

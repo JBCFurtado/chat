@@ -6,3 +6,7 @@ abstract class ChatEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class EventoConectado extends ChatEvent {}
+
+class EventoDesconectado extends ChatEvent{}
