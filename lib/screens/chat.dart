@@ -23,31 +23,38 @@ class Chat extends StatelessWidget {
       ),
     );
   }
+
   Future<void> _showMyDialog(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Atenção!', textAlign: TextAlign.center,),
-        
-        content: Text('Você deseja sair do Chat?', textAlign: TextAlign.center,),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Sim'),
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-            },
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Atenção!',
+            textAlign: TextAlign.center,
           ),
-          TextButton(
-            child: Text('Não'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+          content: Text(
+            'Você deseja sair do Chat?',
+            textAlign: TextAlign.center,
           ),
-        ],
-      );
-     },
+          actions: <Widget>[
+            TextButton(
+              child: Text('Sim'),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/', (route) => false);
+              },
+            ),
+            TextButton(
+              child: Text('Não'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
