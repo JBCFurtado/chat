@@ -20,8 +20,8 @@ class App extends StatelessWidget {
           '/': (context) => Login(),
           '/chat': (context) => Chat(),
           '/usuarios': (context) => Usuarios(),
-        },
-      ),
-    );
-  }
+                  },
+                ),
+              );
+            }
 }
