@@ -1,8 +1,11 @@
+import 'package:chat/bloc/chat_bloc.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final ChatBloc _bloc = context.watch<ChatBloc>();
     return WillPopScope(
       onWillPop: () => null,
       child: Scaffold(
@@ -42,6 +45,7 @@ class Chat extends StatelessWidget {
             TextButton(
               child: Text('Sim'),
               onPressed: () {
+                context.read<ChatBloc>().add(EventoSair());
                 Navigator.pushNamedAndRemoveUntil(
                     context, '/', (route) => false);
               },

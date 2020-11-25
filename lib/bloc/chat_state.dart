@@ -12,3 +12,12 @@ class ChatInitial extends ChatState {}
 class EstadoConectado extends ChatState {}
 
 class EstadoDesconectado extends ChatState {}
+
+
+class EstadoMensagemRecebida extends ChatState {
+  final Message msg;
+
+  EstadoMensagemRecebida(this.msg);
+  @override
+  List<Object> get props => [msg];
+}

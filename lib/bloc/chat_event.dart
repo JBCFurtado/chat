@@ -9,4 +9,19 @@ abstract class ChatEvent extends Equatable {
 
 class EventoConectado extends ChatEvent {}
 
-class EventoDesconectado extends ChatEvent{}
+class EventoDesconectado extends ChatEvent {}
+
+class EventoEntrar extends ChatEvent {
+  final String username;
+  EventoEntrar(this.username);
+}
+
+class EventoSair extends ChatEvent {
+  
+}
+
+class EventoReceberMensagem extends ChatEvent {
+  final Message msg;
+
+  EventoReceberMensagem(this.msg);
+}
