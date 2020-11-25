@@ -1,10 +1,11 @@
-// This is a basic Flutter widget test.
+// Este é um teste básico do widget Flutter.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// Para realizar uma interação com um widget em seu teste, use o WidgetTester
+// utilitário que o Flutter fornece. Por exemplo, você pode enviar tocar e rolar
+// gestos. Você também pode usar o WidgetTester para encontrar widgets filhos no widget
+// árvore, leia o texto e verifique se os valores das propriedades do widget estão corretos.
 
+import 'package:chat/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
