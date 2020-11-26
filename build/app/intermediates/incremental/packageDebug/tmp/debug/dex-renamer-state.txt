@@ -1,4 +1,4 @@
-#Wed Nov 25 21:36:02 BRT 2020
+#Thu Nov 26 00:46:29 BRT 2020
 base.0=C\:\\github\\chat\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
