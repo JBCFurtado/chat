@@ -1,6 +1,9 @@
 import 'package:chat/bloc/chat_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'widget_enviar.dart';
+
 class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,7 +13,14 @@ class Chat extends StatelessWidget {
       onWillPop: () => null,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Conversas'),
+          title: BlocBuilder<ChatBloc, ChatState>(
+            buildWhen: (previousState, state) {
+              return state is EstadoConectado || state is EstadoDesconectado;
+            },
+            builder: (context, state) {
+              return Text(_bloc.conectado ? _bloc.user.username : 'Desconectado');
+            },
+          ),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.people),
@@ -22,6 +32,15 @@ class Chat extends StatelessWidget {
               onPressed: () => _showMyDialog(context),
             ),
           ],
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(color: Colors.yellow,),
+              ),
+            widgetEnviar(),
+          ],),
         ),
       ),
     );

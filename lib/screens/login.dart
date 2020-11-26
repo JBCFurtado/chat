@@ -15,7 +15,6 @@ class Login extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is EstadoMensagemRecebida) {
-          //state.msg.
           if (state.msg.id == 'server' &&
               state.msg.text == 'Bem vindo ao chat!') {
             Navigator.pushNamedAndRemoveUntil(

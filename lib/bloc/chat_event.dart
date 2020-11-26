@@ -16,12 +16,15 @@ class EventoEntrar extends ChatEvent {
   EventoEntrar(this.username);
 }
 
-class EventoSair extends ChatEvent {
-  
-}
+class EventoSair extends ChatEvent {}
 
 class EventoReceberMensagem extends ChatEvent {
   final Message msg;
 
   EventoReceberMensagem(this.msg);
+}
+
+class EventoReceberUsuarios extends ChatEvent {
+  final List<User> users;
+  EventoReceberUsuarios(this.users);
 }
