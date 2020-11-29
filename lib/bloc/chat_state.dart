@@ -21,3 +21,6 @@ class EstadoMensagemRecebida extends ChatState {
 }
 
 class EstadoRecebendoUsuarios extends ChatState {}
+
+
+class EstadoEnviarMensagem extends ChatState {}

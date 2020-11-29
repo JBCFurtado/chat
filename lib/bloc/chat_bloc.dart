@@ -18,6 +18,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   List<User> _users = [];
   List<User> get users => _users;
 
+  List<Message> _messages = [];
+  List<Message> get messages => _messages;
+
   final IO.Socket _socket =
       IO.io('https://karlaycosta.com.br', <String, dynamic>{
     'transports': ['websocket'],
@@ -34,6 +37,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         add(EventoEntrar(_user.username));
       }
     });
+
     _socket.on('disconnect', (_) {
       print('Desconectado...');
       add(EventoDesconectado());
@@ -41,7 +45,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     _socket.on('_msg', (data) {
       print('MSG: $data');
-      add(EventoReceberMensagem(Message.fromJson(data)));
+      var msg = Message.fromJson(data);
+      if (_user.id == msg.id){
+         return add(EventoReceberMensagem(Message.fromJson(data, eu: true)));
+      }
+     add(EventoReceberMensagem(msg));
     });
 
     _socket.on('roomUsers', (data) {
@@ -66,12 +74,18 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       _socket.emit('joinRoom', _user.toJson());
     } else if (event is EventoSair) {
       _user = null;
+      _messages.clear();
       _socket.emit('leaveRoom', {});
     } else if (event is EventoReceberMensagem) {
+      _messages.add(event.msg);
       yield EstadoMensagemRecebida(event.msg);
     } else if (event is EventoReceberUsuarios){
       _users = event.users;
       yield EstadoRecebendoUsuarios();
+    } if (event is EventoEnviarMensagem){
+      print('Enviado...');
+      _socket.emit('msg_', event.msg);
+      yield EstadoEnviarMensagem();
     }
   }
 }

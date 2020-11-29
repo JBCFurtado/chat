@@ -7,8 +7,9 @@ class Login extends StatelessWidget {
   final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    print('BUILD: Login');
     // ignore: close_sinks
-    final ChatBloc _bloc = context.watch<ChatBloc>();
+    final ChatBloc _bloc = BlocProvider.of<ChatBloc>(context);
     return BlocListener<ChatBloc, ChatState>(
       listenWhen: (previousState, state) {
         return state is EstadoMensagemRecebida;

@@ -1,14 +1,19 @@
+import 'package:bubble/bubble.dart';
 import 'package:chat/bloc/chat_bloc.dart';
+import 'package:chat/models/message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'widget_enviar.dart';
+part 'widget_message.dart';
 
 class Chat extends StatelessWidget {
+  final ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     // ignore: close_sinks
-    final ChatBloc _bloc = context.watch<ChatBloc>();
+    final ChatBloc _bloc = BlocProvider.of<ChatBloc>(context);
     return WillPopScope(
       onWillPop: () => null,
       child: Scaffold(
@@ -18,14 +23,17 @@ class Chat extends StatelessWidget {
               return state is EstadoConectado || state is EstadoDesconectado;
             },
             builder: (context, state) {
-              return Text(_bloc.conectado ? _bloc.user.username : 'Desconectado');
+              return Text(
+                  _bloc.conectado ? _bloc.user.username : 'Desconectado');
             },
           ),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.people),
-            onPressed: () => Navigator.pushNamed(context, '/usuarios'),
-          ),
+              icon: Icon(Icons.people),
+              onPressed: () {
+                FocusManager.instance.primaryFocus.unfocus();
+                Navigator.pushNamed(context, '/usuarios');
+              }),
           actions: [
             IconButton(
               icon: Icon(Icons.exit_to_app),
@@ -34,13 +42,41 @@ class Chat extends StatelessWidget {
           ],
         ),
         body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              scale: 1.8,
+              repeat:  ImageRepeat.repeat,
+              image: AssetImage('images/01.png'),
+            ),
+          ),
           child: Column(
             children: [
               Expanded(
-                child: Container(color: Colors.yellow,),
+                child: BlocBuilder<ChatBloc, ChatState>(
+                  buildWhen: (previousState, state) {
+                    return state is EstadoMensagemRecebida;
+                  },
+                  builder: (context, state) {
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      _controller.animateTo(
+                        _controller.position.maxScrollExtent,
+                        duration: Duration(microseconds: 300),
+                        curve: Curves.easeOut
+                      );
+                     });
+                    return ListView.builder(
+                      controller: _controller,
+                      itemCount: _bloc.messages.length,
+                      itemBuilder: (_, index) {
+                        return widgetMessage(_bloc.messages[index]);
+                      },
+                    );
+                  },
+                ),
               ),
-            widgetEnviar(),
-          ],),
+              widgetEnviar(_bloc),
+            ],
+          ),
         ),
       ),
     );
@@ -72,6 +108,7 @@ class Chat extends StatelessWidget {
             TextButton(
               child: Text('Não'),
               onPressed: () {
+                FocusManager.instance.primaryFocus.unfocus();
                 Navigator.of(context).pop();
               },
             ),

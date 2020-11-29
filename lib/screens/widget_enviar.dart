@@ -1,6 +1,6 @@
 part of 'chat.dart';
 
-Widget widgetEnviar() {
+Widget widgetEnviar(ChatBloc bloc) {
   final _controll = TextEditingController();
   return Container(
     padding: EdgeInsets.all(8),
@@ -11,6 +11,7 @@ Widget widgetEnviar() {
             child: TextField(
           onSubmitted: (text) {
             if (text.isNotEmpty) {
+              bloc.add(EventoEnviarMensagem(_controll.text));
               _controll.clear();
             }
           },
@@ -31,8 +32,10 @@ Widget widgetEnviar() {
           color: Colors.white,
           onPressed: () {
             if (_controll.text.isNotEmpty) {
+              bloc.add(EventoEnviarMensagem(_controll.text));
               _controll.clear();
             }
+            FocusManager.instance.primaryFocus.unfocus();
           },
         ),
       ],

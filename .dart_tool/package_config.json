@@ -20,6 +20,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "bubble",
+      "rootUri": "file:///home/jobs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/bubble-1.1.9+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///home/jobs/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0-nullsafety.5",
       "packageUri": "lib/",
@@ -182,7 +188,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-11-26T23:55:02.795673Z",
+  "generated": "2020-11-29T18:14:59.345841Z",
   "generator": "pub",
   "generatorVersion": "2.12.0-29.10.beta"
 }
