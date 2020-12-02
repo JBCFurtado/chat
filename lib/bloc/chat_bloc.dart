@@ -39,7 +39,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     });
 
     _socket.on('disconnect', (_) {
-      print('Desconectado...');
+      print('Desconectado...'); 
       add(EventoDesconectado());
     });
 

@@ -5,7 +5,7 @@ Widget widgetMessage(Message message) {
     return Bubble(
       margin: BubbleEdges.all(6),
       alignment: Alignment.center,
-      color: Colors.blueGrey,
+      color: Colors.cyan,
       child: Column(
         
         children: [
@@ -36,7 +36,7 @@ Widget widgetMessage(Message message) {
     nipWidth: 8,
     nipHeight: 24,
     nip: message.eu ? BubbleNip.rightTop : BubbleNip.leftTop,
-    color: message.eu ? Colors.blueGrey[100] : Colors.blueGrey[50],
+    color: message.eu ? Colors.yellow[300] : Colors.yellow[700],
     child: Column(
       crossAxisAlignment:
           message.eu ? CrossAxisAlignment.end : CrossAxisAlignment.start,

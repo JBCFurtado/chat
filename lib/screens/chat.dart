@@ -30,6 +30,7 @@ class Chat extends StatelessWidget {
           centerTitle: true,
           leading: IconButton(
               icon: Icon(Icons.people),
+              color: Colors.cyan[800],
               onPressed: () {
                 FocusManager.instance.primaryFocus.unfocus();
                 Navigator.pushNamed(context, '/usuarios');
@@ -37,6 +38,7 @@ class Chat extends StatelessWidget {
           actions: [
             IconButton(
               icon: Icon(Icons.exit_to_app),
+              color: Colors.cyan[800],
               onPressed: () => _showMyDialog(context),
             ),
           ],
@@ -44,7 +46,7 @@ class Chat extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              scale: 1.8,
+              scale: 0.50,
               repeat:  ImageRepeat.repeat,
               image: AssetImage('images/01.png'),
             ),
